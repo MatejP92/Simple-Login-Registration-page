@@ -2,9 +2,9 @@
 
 // REGISTRATION FUNCTIONS
 
-function emptyInputSignup($name, $email, $username, $password, $password_2) {
+function emptyInputSignup($first_name,$last_name, $email, $username, $password, $password_2) {
     $result;
-    if (empty($name) || empty($email) || empty($username) || empty($password) || empty($password_2)) {
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($username) || empty($password) || empty($password_2)) {
         $result = true;
     } else {
         $result = false;
@@ -66,8 +66,8 @@ function usernameExists($db_connect, $username, $email){
 }
 
 
-function createUser($db_connect, $name, $email, $username, $password){
-    $sql = "INSERT INTO users (user_full_name, user_email, user_username, user_password) VALUES (?, ?, ?, ?)";
+function createUser($db_connect, $first_name, $last_name, $email, $username, $password){
+    $sql = "INSERT INTO users (user_first_name, user_last_name, user_email, user_username, user_password) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($db_connect);
     if(!mysqli_stmt_prepare($stmt, $sql)){ // run the sql statement and check if there is any errors
         header("location: ../register.php?error=stmtfailed");
@@ -76,7 +76,7 @@ function createUser($db_connect, $name, $email, $username, $password){
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $username, $hashedPassword);
+    mysqli_stmt_bind_param($stmt, "sssss", $first_name, $last_name, $email, $username, $hashedPassword);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../register.php?error=none");

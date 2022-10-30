@@ -2,7 +2,8 @@
 
 if (isset($_POST["submit"])) {
 
-    $name = $_POST["name"];
+    $first_name = $_POST["first_name"];
+    $last_name = $_POST["last_name"];
     $email = $_POST["email"];
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -14,7 +15,7 @@ if (isset($_POST["submit"])) {
 
     //error handling, if users left any fields blank...
     
-    if (emptyInputSignup($name, $email, $username, $password, $password_2) !== false) {
+    if (emptyInputSignup($first_name, $last_name, $email, $username, $password, $password_2) !== false) {
             header("location: ../register.php?error=emptyinput");
             exit();
     }
@@ -40,7 +41,7 @@ if (isset($_POST["submit"])) {
     }
 
 
-    createUser($db_connect, $name, $email, $username, $password);
+    createUser($db_connect, $first_name, $last_name, $email, $username, $password);
 
 } else { // this else throws the user back to register page if they accessed the .process.php through url and not through submit button
     header("location: ../register.php");

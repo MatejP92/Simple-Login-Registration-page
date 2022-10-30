@@ -12,8 +12,12 @@ include_once "includes/header.php";
 <div class="container">
     <form action="includes/register_process.php" method="post">
         <div class="mx-auto form-floating mb-3 mt-3 col-4">
-            <input type="text" class="form-control" name="name" id="name" placeholder="Full Name...">
-            <label for="name">Full Name...</label>
+            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name...">
+            <label for="name">First Name...</label>
+        </div>
+        <div class="mx-auto form-floating mb-3 mt-3 col-4">
+            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name...">
+            <label for="name">Last Name...</label>
         </div>
         <div class="mx-auto form-floating mb-3 mt-3 col-4">
             <input type="text" class="form-control" name="email" id="email" placeholder="Email...">
